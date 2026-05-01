@@ -418,3 +418,26 @@ async function patchPost(id) {
 }
 
 patchPost(1)
+
+
+async function deletePost(id) {
+  try {
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+      method: 'DELETE'
+    })
+
+    if (!res.ok) {
+      throw new Error("It is an error");      
+    }
+
+    const data = await res.json();
+    console.log(data);
+    
+
+  } catch (error) {
+    console.log(`Error: ${error.message}`);
+    
+  }
+}
+
+deletePost(1)
