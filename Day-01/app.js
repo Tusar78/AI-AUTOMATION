@@ -321,7 +321,7 @@ async function getSinglePost(id) {
   }
 }
 
-// getSinglePost(2);
+getSinglePost(1);
 
 
 async function createPost() {
@@ -354,4 +354,38 @@ async function createPost() {
   }
 }
 
-createPost()
+// createPost()
+
+async function updatePost(id) {
+  try {
+    const updatedPost = {
+      id: id,
+      title: 'Updated Post Title',
+      body: 'This content has been updated successfully using the PUT method.',
+      userId: 1,
+    };
+
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updatedPost)
+    })
+
+    if (!res.ok) {
+      throw new Error("It is an error");      
+    }
+
+    const data = await res.json();
+    console.log(data);
+    
+
+  } catch (error) {
+    console.log(`Error: ${error.message}`);
+    
+  }
+}
+
+updatePost(1)
+
