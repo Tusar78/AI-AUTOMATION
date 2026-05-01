@@ -284,4 +284,23 @@ async function loadDashboard() {
   console.log(allInfo);
 }
 
-loadDashboard();
+// loadDashboard();
+
+
+async function getPost() {
+  try {
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts`);
+    if (!res.ok) {
+      throw new Error("Failed to fetch posts")
+    }
+
+    const data = await res.json();
+    console.log(data.slice(0, 5));
+    
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+getPost();
