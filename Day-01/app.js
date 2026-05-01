@@ -321,7 +321,7 @@ async function getSinglePost(id) {
   }
 }
 
-getSinglePost(1);
+// getSinglePost(1);
 
 
 async function createPost() {
@@ -387,7 +387,7 @@ async function updatePost(id) {
   }
 }
 
-updatePost(1)
+// updatePost(1)
 
 async function patchPost(id) {
   try {
@@ -417,7 +417,7 @@ async function patchPost(id) {
   }
 }
 
-patchPost(1)
+// patchPost(1)
 
 
 async function deletePost(id) {
@@ -440,4 +440,113 @@ async function deletePost(id) {
   }
 }
 
-deletePost(1)
+// deletePost(1)
+
+
+async function getUser() {
+  try {
+    
+    const res = await fetch(`https://jsonplaceholder.typicode.com/users`)
+    
+    if (!res.ok) {
+      throw new Error("It is a error");
+    }
+
+    const data = await res.json();
+    console.log(data);    
+
+  } catch (error) {
+    console.log(`Error: ${error.message}`);    
+  }
+}
+
+getUser();
+
+
+async function getSingleUser(id) {
+  try {
+    
+    const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+    
+    if (!res.ok) {
+      throw new Error("It is a error");
+    }
+
+    const data = await res.json();
+    console.log(data);    
+
+  } catch (error) {
+    console.log(`Error: ${error.message}`);    
+  }
+}
+
+getSingleUser(1);
+
+
+// update user
+async function updateUser(id) {
+  try {
+
+    const updateUser = {
+      address: 'Kushtia',
+      email: "tusar@gmail.com", 
+      id: id,
+      name: "Tusar",
+      phone: "012345",
+      username: "Tusar",
+      website: "tusar.netlify.app"
+    }
+    
+    const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updateUser)
+    })
+    
+    if (!res.ok) {
+      throw new Error("It is a error");
+    }
+
+    const data = await res.json();
+    console.log(data);    
+
+  } catch (error) {
+    console.log(`Error: ${error.message}`);    
+  }
+}
+
+updateUser(1);
+
+
+// Single update user
+async function singleUpdateUser(id) {
+  try {
+
+    const updateUser = {
+      email: "update@gmail.com", 
+      name: "Tusar Ali"
+    }
+    
+    const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updateUser)
+    })
+    
+    if (!res.ok) {
+      throw new Error("It is a error");
+    }
+
+    const data = await res.json();
+    console.log(data);    
+
+  } catch (error) {
+    console.log(`Error: ${error.message}`);    
+  }
+}
+
+singleUpdateUser(1);
