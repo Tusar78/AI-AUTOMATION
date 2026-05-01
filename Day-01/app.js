@@ -299,8 +299,59 @@ async function getPost() {
     
     
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 }
 
-getPost();
+// getPost();
+
+async function getSinglePost(id) {
+  try {
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+    if (!res.ok) {
+      throw new Error("Failed to fetch posts")
+    }
+
+    const data = await res.json();
+    console.log(data);
+    
+    
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+// getSinglePost(2);
+
+
+async function createPost() {
+  try {
+    const newPost = {
+      title: 'My Awesome New Post',
+      body: 'This is a test post created to demonstrate how to send data using the POST method to a JSON API.',
+      userId: 1,
+    };
+
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newPost)
+    })
+
+    if (!res.ok) {
+      throw new Error("Post Not Create");      
+    }
+
+    const data = await res.json();
+    console.log(data);
+    
+
+  } catch (error) {
+    console.log(`Error: ${error.message}`);
+    
+  }
+}
+
+createPost()
