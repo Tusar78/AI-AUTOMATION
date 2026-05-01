@@ -1,38 +1,37 @@
 # JavaScript Callback Function
 
-This project demonstrates a simple JavaScript callback function.
-
-## Project Structure
-
-- `Day-01/index.html` - Basic HTML page that loads the JavaScript file.
-- `Day-01/app.js` - Callback example code.
+This is simple JavaScript callback function.
 
 ## Example Code
 
 ```js
 function greet(name, cb) {
-    return cb(name);
+  return cb(name);
 }
 
-const result = greet("Rakib", (name) => {
-    return `Good Evening ${name}`;
+const result = greet("Tusar", (name) => {
+  return `Good Evening ${name}`;
 });
 
 console.log(result);
 ```
 
-## How to Run
+```js
+function sample(num1, num2, cb) {
+  let a = num1 + num2;
+  let b = num1 - num2;
+  return cb(a, b);
+}
 
-1. Open `Day-01/index.html` in your browser.
-2. Open browser Developer Tools.
-3. Check the Console tab to see the output.
+const result2 = sample(10, 20, (a, b) => {
+  return `The sum of ${a} and ${b} is ${a + b}`;
+});
+
+console.log(result2);
+```
 
 ## Expected Output
 
 ```text
-Good Evening Rakib
+Good Evening Tusar
 ```
-
-## Learning Goal
-
-Understand how callback functions work by passing a function as an argument and executing it inside another function.
