@@ -29,9 +29,3 @@ const result2 = sample(10, 20, (a, b) => {
 
 console.log(result2);
 ```
-
-## Expected Output
-
-```text
-Good Evening Tusar
-```
