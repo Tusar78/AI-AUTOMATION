@@ -230,8 +230,3 @@ fetch → real API communication
 
 You are now:
 👉 **API-ready JavaScript developer (solid foundation)**
-
-Next step (optional):
-
-* AI Automation
-* Real project integration
