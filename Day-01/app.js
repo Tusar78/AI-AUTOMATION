@@ -226,12 +226,11 @@ async function runAutomation() {
 function getProduct() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(
-        {
-          id: 1,
-          name: "Chocolate Cake",
-          price: 500,
-        });
+      resolve({
+        id: 1,
+        name: "Chocolate Cake",
+        price: 500,
+      });
     }, 1000);
   });
 }
@@ -239,7 +238,7 @@ function getProduct() {
 function checkStock(productId) {
   return new Promise((resolve) => {
     setTimeout(() => {
-      productId == 1 ? resolve("In Stock") : resolve('Not Available');
+      productId == 1 ? resolve("In Stock") : resolve("Not Available");
     }, 1000);
   });
 }
@@ -251,10 +250,38 @@ async function productInfo() {
 
     const inStock = await checkStock(product.id);
     console.log(inStock);
-    
   } catch (error) {
     console.log(`Error Message: ${error}`);
   }
 }
 
-productInfo();
+// productInfo();
+
+function getUser() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Tusar");
+    }, 1000);
+  });
+}
+function getProducts() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(["Pizza", "Chicken"]);
+    }, 1000);
+  });
+}
+function getOrders() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ id: 1, name: "Pizza" });
+    }, 1000);
+  });
+}
+
+async function loadDashboard() {
+  const allInfo = await Promise.all([getUser(), getProducts(), getOrders()]);
+  console.log(allInfo);
+}
+
+loadDashboard();
