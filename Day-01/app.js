@@ -118,10 +118,33 @@ riskyTask(true)
 
 // p1.then(res => console.log(res));
 
+// const p1 = new Promise(resolve => setTimeout(()=>resolve("A"), 1000));
+// const p2 = new Promise((resolve, reject) => setTimeout(()=>reject("B"), 2000));
+// const p3 = new Promise(resolve => setTimeout(()=>resolve("C"), 1500));
 
-const p1 = new Promise(resolve => setTimeout(()=>resolve("A"), 1000));
-const p2 = new Promise((resolve, reject) => setTimeout(()=>reject("B"), 2000));
-const p3 = new Promise(resolve => setTimeout(()=>resolve("C"), 1500));
+// Promise.all([p1, p2, p3])
+// .then(res => console.log(res))
 
-Promise.all([p1, p2, p3])
-.then(res => console.log(res))
+const p1 = new Promise((resolve) => setTimeout(() => resolve("Tusar"), 2000));
+const p2 = new Promise((resolve) => setTimeout(() => resolve("Jannat"), 1000));
+
+Promise.race([p1, p2]).then((res) => console.log(res));
+
+// Async Await
+function getName() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Tusar");
+    }, 1000);
+  });
+}
+
+
+async function showName() {
+  const name = await getName();
+  console.log(name);
+}
+
+showName();
+
+
