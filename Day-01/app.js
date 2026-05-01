@@ -389,3 +389,32 @@ async function updatePost(id) {
 
 updatePost(1)
 
+async function patchPost(id) {
+  try {
+    const updateData = {
+      title: 'Only Title Updated'
+    };
+
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updateData)
+    })
+
+    if (!res.ok) {
+      throw new Error("It is an error");      
+    }
+
+    const data = await res.json();
+    console.log(data);
+    
+
+  } catch (error) {
+    console.log(`Error: ${error.message}`);
+    
+  }
+}
+
+patchPost(1)
