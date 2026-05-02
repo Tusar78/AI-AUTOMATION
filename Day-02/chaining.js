@@ -6,8 +6,7 @@ const products = [
 ];
 
 const finalProducts = products
-  .filter((product) => product.inStock)
-  .filter((product) => product.price > 200)
+  .filter((product) => product.inStock && product.price > 200) 
   .map((product) => {
     return {
         ...product,
