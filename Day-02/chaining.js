@@ -42,4 +42,34 @@ async function loadProducts() {
     console.log(`Error: ${err.message}`);
   }
 }
-loadProducts();
+// loadProducts();
+
+// Another Problem
+
+async function loadPosts() {
+    try {
+      const res = await fetch(`https://jsonplaceholder.typicode.com/posts`);
+      if (!res.ok) {
+        throw new Error("It's an Error");
+      }
+
+      const posts = await res.json();
+      const finalPost = posts.filter(post => post.userId === 1).map(post => {
+        return {
+            ...post,
+            title: post.title.slice(0, 50)
+        }
+      }).reduce((acc, post) => {
+        acc[post.id] = post.title
+        return acc
+      }, {})
+
+      console.log(finalPost);
+      
+
+     
+    } catch (err) {
+      console.log(`Error: ${err.message}`);
+    }
+  }
+  loadPosts();
