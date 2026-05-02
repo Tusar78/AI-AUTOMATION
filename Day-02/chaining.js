@@ -6,13 +6,40 @@ const products = [
 ];
 
 const finalProducts = products
-  .filter((product) => product.inStock && product.price > 200) 
+  .filter((product) => product.inStock && product.price > 200)
   .map((product) => {
     return {
-        ...product,
-        price: Number((product.price * 1.1).toFixed(2))
+      name: product.name,
+      price: Number((product.price * 1.1).toFixed(2)),
     };
   });
 
-  console.log(finalProducts);
-  
+// console.log(finalProducts);
+
+// 🔥 Task: API Chaining (FINAL BOSS)
+async function loadProducts() {
+  try {
+    const res = await fetch(`https://fakestoreapi.com/products`);
+    if (!res.ok) {
+      throw new Error("It's an Error");
+    }
+    const products = await res.json();
+    console.log(products);
+
+    const finalProducts = products
+      .filter(
+        (product) => product.price > 100 && product.category === "electronics",
+      )
+      .map((product) => {
+        return {
+          title: product.title,
+          finalPrice: Number((product.price * 1.1).toFixed(2)),
+        };
+      });
+
+    console.log(finalProducts);
+  } catch (err) {
+    console.log(`Error: ${err.message}`);
+  }
+}
+loadProducts();
